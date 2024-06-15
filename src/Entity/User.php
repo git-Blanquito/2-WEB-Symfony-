@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use App\Form\UserType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -46,8 +47,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Interaction::class, mappedBy: 'user', orphanRemoval: true)]
     private Collection $interactions;
 
-    public function __construct()
+    public function __construct($id = NULL, $email = NULL, $password = NULL, $photo = NULL, $description = NULL)
     {
+		$this->id = $id;
+		$this->email = $email;
+		$this->password = $password;
+		$this->photo = $photo;
+		$this->description = $description;
         $this->post = new ArrayCollection();
         $this->interactions = new ArrayCollection();
     }
