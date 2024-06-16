@@ -52,7 +52,7 @@ class Post
 		$this->type = $type;
 		$this->description = $description;
 		$this->file = $file;
-		$this->creation_date = $creation_date;
+		$this->creation_date = new \DateTime();
 		$this->url = $url;
         $this->interactions = new ArrayCollection();
     }

@@ -59,4 +59,16 @@ class PostRepository extends ServiceEntityRepository
 					->setParameter('id', $id)
 					->getResult();
 	}
+
+	public function findAllPost()
+	{
+		return $this->getEntityManager()
+					->createQuery(
+						'SELECT user.email, post.title, post.type, post.description, post.file, post.creation_date
+						FROM App\Entity\Post post
+						INNER JOIN post.user user
+						ORDER BY post.id DESC'
+						)
+					->getResult();
+	}
 }
